@@ -47,6 +47,9 @@ Draw a diagram that shows how your Objects will use Messages to communicate with
 2. Define a 'stack trace'.
   A stack trace shows a list of method messages prior to exception or error message being thrown. This traceback can be extremely useful in order to isolate errors and bugs in your programme. 
 
+# Domain Model:
+Please go to the model_structure folder to access the domain model for this project. 
+
 # Task 4 - Debugging an Error:
 To complete this challenge, you will need to:
 1. Write down the type of error
