@@ -72,3 +72,23 @@ To complete this challenge, you will need to:
  
 5. Suggest one way of solving the error.
    Define the object to somthing that exisits.
+
+
+# User Story 2:
+As a member of the public
+So I can return bikes I've hired
+I want to dock my bike at the docking station
+
+As a member of the public
+So I can decide whether to use the docking station
+I want to see a bike that has been docked
+
+nouns: member, bike(s), docking station
+verbs: return, hired, dock, decide, see
+
+# Functional diagram - Second User story
+____________________________________
+member           | return
+bike(s)          | dock
+docking station  | see
+------------------------------------
