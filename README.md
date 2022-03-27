@@ -8,11 +8,17 @@ Me and my pair programmer were tasked at attempting to complete the 22 exercises
 On CML type: 
 brew install ruby
 - current Ruby version (ruby-3.0.0)
+gem install rspec
+rspec --init
 
 # How to run programme:
 On CML type: 
 cd boris-bikes-remastered
 open 
+
+# How to run tests:
+On CML type: 
+rspec
 
 # Build status:
 Testing
