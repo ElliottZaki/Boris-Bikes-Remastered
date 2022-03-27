@@ -92,3 +92,18 @@ member           | return
 bike(s)          | dock
 docking station  | see
 ------------------------------------
+
+# User Story 3:
+As a member of the public,
+So that I am not confused and charged unnecessarily,
+I'd like docking stations not to release bikes when there are none available.
+
+nouns: member, bike(s), docking station
+verbs: not_to, release
+
+# Functional diagram - Third User story
+____________________________________
+member           | not_to
+bike(s)          | release
+docking station  | 
+------------------------------------
