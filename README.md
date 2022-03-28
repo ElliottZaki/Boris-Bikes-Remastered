@@ -122,3 +122,18 @@ maintainer       | control
 bike(s)          | not_to
 docking station  | accept
 ------------------------------------
+
+# User Story 5:
+As a system maintainer,
+So that I can plan the distribution of bikes,
+I want a docking station to have a default capacity of 20 bikes.
+
+nouns: maintainer, bike(s), docking station
+verbs: plan, distribution,
+
+# Functional diagram - Fifth User story
+____________________________________
+maintainer       | control
+bike(s)          | not_to
+docking station  | accept
+------------------------------------
