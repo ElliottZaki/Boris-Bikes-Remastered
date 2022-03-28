@@ -107,3 +107,18 @@ member           | not_to
 bike(s)          | release
 docking station  | 
 ------------------------------------
+
+# User Story 4:
+As a maintainer of the system,
+So that I can control the distribution of bikes,
+I'd like docking stations not to accept more bikes than their capacity.
+
+nouns: maintainer, bike(s), docking station
+verbs: control, not_to, accept
+
+# Functional diagram - Fourth User story
+____________________________________
+maintainer       | control
+bike(s)          | not_to
+docking station  | accept
+------------------------------------
