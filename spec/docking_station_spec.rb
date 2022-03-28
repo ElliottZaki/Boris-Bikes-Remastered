@@ -1,6 +1,7 @@
 require './lib/docking_station'
 
 describe DockingStation do
+  let(:docking_station) { double(DockingStation::DEFAULT_CAPACITY) }
    #Rspec one-liner syntax: `it` is not available from within an example (e.g. an `it` block) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc). It is only available on an example group (e.g. a `describe` or `context` block) hence why it is here.
     # it { is_expected.to respond_to :release_bike } 
   it 'responds to bike object' do
@@ -33,7 +34,7 @@ describe DockingStation do
 
 
     it 'raises an error if Docking station is full' do
-      20.times { subject.dock(Bike.new) }
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
       expect{ subject.dock(Bike.new) }.to raise_error("Docking station is full")
     end
   end
