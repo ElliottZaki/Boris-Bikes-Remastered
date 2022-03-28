@@ -113,7 +113,7 @@ As a maintainer of the system,
 So that I can control the distribution of bikes,
 I'd like docking stations not to accept more bikes than their capacity.
 
-nouns: maintainer, bike(s), docking station
+nouns: maintainer, bike(s), docking station, capacity
 verbs: control, not_to, accept
 
 # Functional diagram - Fourth User story
@@ -121,6 +121,7 @@ ____________________________________
 maintainer       | control
 bike(s)          | not_to
 docking station  | accept
+capacity         |
 ------------------------------------
 
 # User Story 5:
@@ -128,12 +129,28 @@ As a system maintainer,
 So that I can plan the distribution of bikes,
 I want a docking station to have a default capacity of 20 bikes.
 
-nouns: maintainer, bike(s), docking station
-verbs: plan, distribution,
+nouns: maintainer, bike(s), docking station, capacity
+verbs: plan, distribution
 
 # Functional diagram - Fifth User story
 ____________________________________
-maintainer       | control
-bike(s)          | not_to
-docking station  | accept
+maintainer       | plan
+bike(s)          | distribution
+docking station  | 
+capacity         |
+------------------------------------
+
+# User Story 6:
+As a system maintainer,
+So that busy areas can be served more effectively,
+I want to be able to specify a larger capacity when necessary.
+
+nouns: maintainer, area, capacity
+verbs: served, specify
+
+# Functional diagram - Sixth User story
+____________________________________
+maintainer       | served
+area             | specify
+capacity         |
 ------------------------------------
