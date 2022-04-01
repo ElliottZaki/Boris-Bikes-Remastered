@@ -6,17 +6,8 @@ describe DockingStation do
    #Rspec one-liner syntax: `it` is not available from within an example (e.g. an `it` block) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc). It is only available on an example group (e.g. a `describe` or `context` block) hence why it is here.
     # it { is_expected.to respond_to :release_bike } 
   it 'responds to bike object' do
-    expect(subject).to respond_to :bikes
+    expect(subject).to respond_to :stored_bikes
   end
-
-  #Write a feature test that allows a user to set a @capacity instance variable when DockingStation.new is called.
-  # it 'can set a @capacity instance variable when DockingStation.new is called' do
-  # # it { is_expected.to have_attributes(:capacity) }
-  #   # dockingstation = DockingStation.new(2)
-  #   # 2.times { subject.dock(Bike.new) }
-  #   expect(subject).to eq (DockingStation::capacity)
-  #   # expect(subject).to respond_to :capacity
-  # end
 
   describe 'initialization' do
     it 'has a default capacity' do
@@ -36,10 +27,9 @@ describe DockingStation do
     end
 
     it 'releases a working bike' do
-      allow(bike).to receive(:working?).and_return(true)
-      subject.dock(bike)
-      released_bike = subject.release_bike
-      expect(released_bike).to be_working
+      bike = double(:bike, working: true)
+      subject.dock bike
+      expect(subject.release_bike).to be bike
     end
 
     it 'raises an error if no bikes are available' do
@@ -47,7 +37,7 @@ describe DockingStation do
     end
 
     it 'raises an error if docked bikes are currently broken' do
-      allow(bike).to receive(:report_broken).and_return(true)
+      bike = double(:bike, working: false)
       subject.dock(bike)
       expect{ subject.release_bike }.to raise_error("Docked bike(s) are currently broken")
     end
@@ -60,14 +50,14 @@ describe DockingStation do
       expect(subject.dock(bike)).to eq ([bike])
     end
 
-    it 'docks broken bikes' do
-      allow(bike).to receive(:report_broken).and_return(true)
-      subject.dock(bike)
-      expect(subject.bikes).to eq ([bike])
+    it 'is able to dock both working and broken bikes' do
+      working_bike = double(:bike, working: true)
+      broken_bike = double(:bike, working: false)    
+      # allow(bike).to receive(:report_broken).and_return(true) - Rspec shorthand syntax is used above and this line is long format.
+      subject.dock(working_bike)
+      subject.dock(broken_bike)
+      expect(subject.stored_bikes).to eq ([working_bike, broken_bike])
     end
-
-  
-
 
     it 'raises an error if Docking station is full' do
       subject.capacity.times { subject.dock double(:bike) }
