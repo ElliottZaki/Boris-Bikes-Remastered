@@ -2,6 +2,7 @@ require './lib/docking_station'
 
 describe DockingStation do
   let(:docking_station) { double(DockingStation::DEFAULT_CAPACITY) }
+  let(:bike) { double :bike }
    #Rspec one-liner syntax: `it` is not available from within an example (e.g. an `it` block) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc). It is only available on an example group (e.g. a `describe` or `context` block) hence why it is here.
     # it { is_expected.to respond_to :release_bike } 
   it 'responds to bike object' do
@@ -24,8 +25,8 @@ describe DockingStation do
 
     it 'has a variable capacity' do
       docking_station = DockingStation.new(30)
-      30.times { docking_station.dock Bike.new }
-      expect{ docking_station.dock Bike.new }.to raise_error("Docking station is full")
+      30.times { docking_station.dock double(:bike) }
+      expect{ docking_station.dock double(:bike) }.to raise_error("Docking station is full")
     end
   end
   
@@ -35,10 +36,10 @@ describe DockingStation do
     end
 
     it 'releases a working bike' do
-      bikes = Bike.new
-      subject.dock(bikes)
-      expect(bikes).to be_working
-      expect(subject.release_bike).to eq (bikes)
+      allow(bike).to receive(:working?).and_return(true)
+      subject.dock(bike)
+      released_bike = subject.release_bike
+      expect(released_bike).to be_working
     end
 
     it 'raises an error if no bikes are available' do
@@ -46,32 +47,31 @@ describe DockingStation do
     end
 
     it 'raises an error if docked bikes are currently broken' do
-      bike = Bike.new
-      bike.report_broken(true)
+      allow(bike).to receive(:report_broken).and_return(true)
       subject.dock(bike)
       expect{ subject.release_bike }.to raise_error("Docked bike(s) are currently broken")
     end
   end
 
   describe '#dock' do
+    it { is_expected.to respond_to(:dock).with(1).argument }
+
     it 'docks a bike' do
-      bike = Bike.new
-      expect(subject).to respond_to(:dock).with(1).argument
       expect(subject.dock(bike)).to eq ([bike])
     end
 
-    it 'docks a broken bikes' do
-      bike = Bike.new
-      bike.report_broken(true)
+    it 'docks broken bikes' do
+      allow(bike).to receive(:report_broken).and_return(true)
       subject.dock(bike)
-      expect(bike.working).to be(false)
       expect(subject.bikes).to eq ([bike])
     end
 
+  
+
 
     it 'raises an error if Docking station is full' do
-      subject.capacity.times { subject.dock(Bike.new) }
-      expect{ subject.dock(Bike.new) }.to raise_error("Docking station is full")
+      subject.capacity.times { subject.dock double(:bike) }
+      expect{ subject.dock double(:bike) }.to raise_error("Docking station is full")
     end
   end
 
