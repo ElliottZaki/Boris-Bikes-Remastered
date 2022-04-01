@@ -154,3 +154,29 @@ maintainer       | served
 area             | specify
 capacity         |
 ------------------------------------
+
+# User Story 7:
+As a member of the public,
+So that I reduce the chance of getting a broken bike in future,
+I'd like to report a bike as broken when I return it.
+
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like docking stations not to release broken bikes.
+
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like docking stations to accept returning bikes (broken or not).
+
+nouns: member, bike(s), report, maintainer, users, dockingstation
+verbs: reduce, return, manage, accept
+
+# Functional diagram - Seventh User story
+____________________________________
+member           | reduce
+bike(s)          | return
+report           | manage
+maintainer       | accept
+users            | 
+dockingstation   |
+------------------------------------
