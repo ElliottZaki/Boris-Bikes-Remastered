@@ -180,3 +180,26 @@ maintainer       | accept
 users            | 
 dockingstation   |
 ------------------------------------
+
+# User Story 8:
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to take broken bikes from docking stations and deliver them to garages to be fixed.
+
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to collect working bikes from garages and distribute them to docking stations.
+
+nouns: system, bike(s), maintainer, users, dockingstation, garages, vans
+verbs: take, deliver, manage, collect, distribute
+
+# Functional diagram - Eighth User story
+____________________________________
+system           | take
+bike(s)          | deliver
+vans             | manage
+garages          | collect
+maintainer       | distribute
+users            |
+dockingstation   |
+------------------------------------

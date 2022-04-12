@@ -3,9 +3,10 @@ require './lib/docking_station'
 describe DockingStation do
   let(:docking_station) { double(DockingStation::DEFAULT_CAPACITY) }
   let(:bike) { double :bike }
+  let(:van) { double :van }
    #Rspec one-liner syntax: `it` is not available from within an example (e.g. an `it` block) or from constructs that run in the scope of an example (e.g. `before`, `let`, etc). It is only available on an example group (e.g. a `describe` or `context` block) hence why it is here.
     # it { is_expected.to respond_to :release_bike } 
-  it 'responds to bike object' do
+  it 'responds to stored_bikes array' do
     expect(subject).to respond_to :stored_bikes
   end
 
@@ -64,5 +65,24 @@ describe DockingStation do
       expect{ subject.dock double(:bike) }.to raise_error("Docking station is full")
     end
   end
+
+  describe '#repair_bike' do
+    it 'calls a repair van to collect all broken bikes from Docking station' do
+      working_bike = double(:bike, working: true)
+      broken_bike = double(:bike, working: false)
+      van = double(:van)
+      subject.dock(working_bike)
+      subject.dock(broken_bike)
+      allow(van).to receive(:collect)
+      allow(van).to receive(:stored_cargo)
+      subject.repair_bike(van)
+      p subject
+      p van
+      p van.stored_cargo
+      # expect(van.stored_cargo).to eq ([broken_bike])  
+      expect(subject.stored_bikes).to eq ([working_bike])
+    end
+  end
+
 
 end

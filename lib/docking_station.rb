@@ -1,4 +1,5 @@
 require_relative 'bike'
+require_relative 'van'
 
 class DockingStation 
   DEFAULT_CAPACITY = 20
@@ -18,6 +19,20 @@ class DockingStation
   def dock(bike)
     full?
     @stored_bikes << bike
+  end
+
+  # damaged_goods = dockingstation.stored_bikes.map! { |x| x == @working=false puts x }
+  # array.each { |x| puts x }
+  # dockingstation.stored_bikes.each { |x| puts x.working? }
+
+  def repair_bike(van)
+    empty?
+    @stored_bikes.each do |x| 
+      if x.working == false
+        van.collect(x)
+      end
+    end
+    @stored_bikes.select! { |x| x.working }
   end
 
 
